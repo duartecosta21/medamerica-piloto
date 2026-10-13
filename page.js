@@ -234,9 +234,7 @@
       // Anchors: hero slot, folio, route point, landing slot.
       var A = fromRect(heroSlot.getBoundingClientRect(), '#25272B');
       var tRect = track.getBoundingClientRect();
-      var F = mobile
-        ? { x: 16 + 13 + 32, y: 30, w: 20, r: 0, c: null }
-        : { x: tRect.left + tRect.width / 2, y: tRect.top + pageP * tRect.height, w: 24, r: 0, c: null };
+      var F = { x: tRect.left + tRect.width / 2, y: tRect.top + pageP * tRect.height, w: mobile ? 16 : 24, r: 0, c: null };
       var fc = (tone === 'dark' || tone === 'deep') ? '#F3F2EE' : '#25272B';
       F.c = fc;
       var pt = routeLine.getPointAtLength(drawn * L);
@@ -251,7 +249,7 @@
 
       // Take-off climbs above the headline before turning for the margin.
       var tk = ss(0.1, 0.92, hp);
-      var top = { x: A.x - (A.x - F.x) * 0.25, y: Math.min(A.y, 46), w: (A.w + F.w) / 2, r: 0, c: A.c };
+      var top = { x: A.x - (A.x - F.x) * 0.25, y: Math.min(A.y, mobile ? 84 : 46), w: (A.w + F.w) / 2, r: 0, c: A.c };
       var pos = tk < 0.45 ? mix(A, top, ss(0, 0.45, tk)) : mix(top, F, ss(0.45, 1, tk));
       var pre = clamp(1 - rr.top / vh), post = clamp(1 - rr.bottom / vh);
       var wR = rr.top > 0 ? ss(0.62, 1, pre) : 1 - ss(0.3, 0.75, post);
